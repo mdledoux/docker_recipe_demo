@@ -128,7 +128,7 @@ You can set your recipe to do various tasks in certain directories by adjusting 
 Whatever the last WORKDIR is, that is where bash/the terminal will bring you.
 
 
-### docker-compose
+### Examples with NodeJS and PostGreSQL, brought together with docker-compose
 Here is a couple of tutorials that helped me a lot:
 1. https://www.linode.com/docs/applications/containers/docker-container-communication/
 2. https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/

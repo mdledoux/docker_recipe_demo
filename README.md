@@ -7,7 +7,7 @@ docker pull httpd \
 Your recipe (Dockerfile) says "FROM http" on the first line, which will automatically pull this if not done already
 
 
-docker image  build -t  olp_image  . \
+```docker image  build -t  olp_image  . ```\
 The "." tells it to build from a local recipse stored HERE. \
 I tend to have a prod recipe in "." and a dev recipe in "./dev" (e.g., ./dev/Dockerfile) \
 in which case I would use.

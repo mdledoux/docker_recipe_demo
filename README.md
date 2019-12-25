@@ -23,7 +23,7 @@ which works great, but you might lose your IDE's syntax highlighting.
 THIS WILL PROBABLY FAIL, IF PORT 80 is not available:\
 ```docker run             --name olp_container -d olp_image```\
 TRY THIS INSTEAD:\
-```docker run -p 8080:80  --name olp_container -d olp_image```\
+```docker run -p 8080:80  --name olp_container -d olp_image```
 > 4154aa22a08f19d8cf7ec1aead62eae43c8eeeccd42929d87af0674f5f6f65be
 
 OR  (addition of "--rm" exaplained a bit further down)\

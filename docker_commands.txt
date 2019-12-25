@@ -1,0 +1,31 @@
+docker pull httpd
+
+
+docker image  build -t  olp_image  .
+docker run             --name olp_container -d olp_image
+docker run -p 8080:80  --name olp_container -d olp_image 
+
+docker run --rm              --name olp_container -d olp_image
+docker run --rm  -p 8080:80  --name olp_container -d olp_image 
+
+
+docker container ls
+
+# IF YOU USE --rm it will automatically remove the container as soon as you stop it with:
+docker stop olp_container
+
+# if you didn't use --rm then you have to use the 'rm' command if you want to re-run/rebuild it.
+docker rm olp_container
+
+# OR you can start it back up again
+docker start olp_container
+# this is the same instance
+
+
+
+# Launch a bash terminal INTO the container:
+docker exec -it olp_container bash
+
+TRY:
+root@a5b84073a54a:/usr/local/apache2# composer
+# THIS IS THE PACKAGE MANAGER FOR INSTALLING PHP MODULES - it requires php-cli, which was installed with "php" in the recipe

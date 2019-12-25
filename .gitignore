@@ -1,0 +1,7 @@
+*.swp
+*id_rsa*
+known_hosts
+authorized_keys
+bak
+tmp
+

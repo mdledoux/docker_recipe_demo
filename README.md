@@ -126,3 +126,13 @@ This is a bit suprising considering it is based on Debian.  In the debian-based 
 You can set your recipe to do various tasks in certain directories by adjusting the CWD (as many times as necessary)\
 ```WORKDIR /var/www/html/```\
 Whatever the last WORKDIR is, that is where bash/the terminal will bring you.
+
+
+### docker-compose
+Here is a couple of tutorials that helped me a lot:
+1. https://www.linode.com/docs/applications/containers/docker-container-communication/
+2. https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/
+
+The first one is a nice simple, gradual, and progressive example.  It starts off by setting up Docker, installing PostGres locally on your hosting system, and making a recipe for an image tha would use NodeJS to run a simple web server.  The source code run via Node simply connects to the PG databse on the hosting machine.  Then a Postgres container is downloaded and lauched and the app is reconfigured to access that container by linking the web server to the database server.  Finally the entire process of running these different containers at the commandline and setting up their network is all automated by a simple docker-compose file which runs an integrated set or system of containers together - potentially starting and stopping them together in the order of their dependencies (database first, then web server, etc...).
+
+The second URL dives more into docker-compose, which should provide more insites after that initial example.

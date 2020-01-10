@@ -3,7 +3,7 @@
 
 ### Commands:
 OPTIONAL: \
-docker pull httpd \
+``` docker pull httpd ``` \
 Your recipe (Dockerfile) says "FROM http" on the first line, which will automatically pull this if not done already
 
 

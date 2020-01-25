@@ -88,16 +88,18 @@ This might be useful for persisting the postgres datafiles for a database contai
 ANOTHER USECASE migth be accessing log files - you might want to save the log files, or be able to acess them from your desktop, rather than having to bash-terminal into the container to view them.
 ```
 docker run --rm \
-  -p 8080:80  --name olp_container -d olp_image \
-  -v $PWD/logs:/var/logs/apache2
+  -p 8080:80 \
+  -v $PWD/logs:/var/logs/apache2 \
+  --name olp_container -d olp_image   
 ```
 
 Or, even mount two locations:
 ```
 docker run --rm \
-  -p 8080:80  --name olp_container -d olp_image \
+  -p 8080:80 \
   -v $PWD/logs:/var/logs/apache2 \
-  -v $PWD/web/htdocs:/var/www/html/ 
+  -v $PWD/web/htdocs:/var/www/html/ \
+  --name olp_container -d olp_image 
 ```
 The latter volume-mount mounts the htdocs folder in your local repo's "web" folder (repo/web/htdocs), and maps it to the standard debian web root location.  (this was just to have a parent folder for all web resources, including CGIs or scripts relative to the web aspect, as opposed to the database asepct)
 

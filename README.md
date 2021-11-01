@@ -1,6 +1,9 @@
 # docker_recipe_demo
 ## A simple demo of how to use a Docker recipe and some commands - following up on a conversation with Malcolm for building Our Little Project
 
+### Note: I originally wrote this in December of 2019 and have learned a lot since
+I need to review to see how many bad practices I hadn't yet stopped dong.  For instance, I just saw in my Dockerfile that I was originally copying SSH keys into the image to clone the same repo into the image.  **Good greif, NO!**  I should have been `COPY`ing code into the image.
+
 ### Commands:
 OPTIONAL: \
 ``` docker pull httpd ``` \
@@ -76,7 +79,8 @@ Additionally, the base OS of the image(s) you may be using are not necessarily i
 
 This is a common case for using docker-compose (probably installed separately) whereby you create an application from a set of services - a database and a web server and a map tiling engine (e.g., postgres, apache, and mapserver) are all composed together, and communicate with eachother via their own private network.  Containers on the hosting system that are not part of this composition cannot talk to any of those containers.
 
-You might respond "What if a particular OS doesn't have a certain tool that I need".  Well, theoretically that tool would be on your development system, OR if it needs to be in a certain container, and only one Linux distro offers a certain application, then you would choose that as your base image (if making your own image, but most likely someone else already made an image and it is already using the distro that provides it).  Other tools that you might need should be pretty standard to all distros (curl, wget, git, gnupg, unzip, sqlite3,...and languages like perl, python, ruby, etc...)
+You might respond "What if a particular OS doesn't have a certain tool that I need".  Well, theoretically that tool would be on your development system, OR if it needs to be in a certain container, and only one Linux distro offers a certain application, then you could choose that as your base image (if making your own image, but most likely someone else already made an image and it is already using the distro that provides it).  But better yet, you don't have (or don't want to install) these tools locally, you might consider an entirely separate image with maintenance tools baked into it to spin up containers to do maintenance or dev tasks.   This approach keeps your app's image clean for production, and you avoid having separate dev and prod images (which is a Docker anti-pattern).
+Other tools that you might need should be pretty standard to all distros (curl, wget, git, gnupg, unzip, sqlite3,...and languages like perl, python, ruby, etc...)
 
 I'm mostly avoid putting vim into an image unless I'm actively trying to tweak with files to get a configuration working - but once I do, I take those customizations and integrate them into my recipe.  I might use ```RUN echo "asdf" >> file.conf"``` to append a line to a conf file, or I might use sed to modify a configuraiton in a file, or a value in a databse:\
 ```RUN sed -i -e"s/^#listen_addresses =.*$/listen_addresses = '*'/" /var/lib/postgresql/data/postgresql.conf```
